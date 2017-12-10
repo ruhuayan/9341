@@ -1,0 +1,20 @@
+<?php
+//exit; // upload demo is disabled
+
+if ( !empty( $_FILES ) ) {
+    $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
+    //$uploadPath = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $_FILES[ 'file' ][ 'name' ];
+    $uploadPath = $_SERVER['DOCUMENT_ROOT'] ."/imgs/". $_FILES[ 'file' ][ 'name' ];
+    move_uploaded_file( $tempPath, $uploadPath );
+
+    $answer = array('fid'=>rand(), 'filename'=> $_FILES[ 'file' ][ 'name' ], 'path' => $uploadPath);
+    $json = json_encode( $answer );
+
+    echo $json;
+
+} else if(!empty($_POST['imageData'])){
+    //echo ($_POST['imageData'] );\
+    file_put_contents('filename.jpg', $_POST['imageData']);
+    echo "success";
+}
+?>
