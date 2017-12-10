@@ -77,10 +77,10 @@ jQuery(function ($) {
 			thumb_links: 0,			// Individual thumb links for each slide
 			thumbnail_navigation: 0,			// Thumbnail navigation
 			slides: [			// Slideshow Images
-				{ image: '_include/img/slider-images/image01.jpg', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image02.jpg', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image03.jpg', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image04.jpg', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' }
+				{ image: '_include/img/slider-images/image01.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
+				{ image: '_include/img/slider-images/image02.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
+				{ image: '_include/img/slider-images/image03.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
+				{ image: '_include/img/slider-images/image04.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' }
 			],
 
 			// Theme Options			   
