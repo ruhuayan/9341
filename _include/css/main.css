@@ -334,7 +334,7 @@ h3.spec {
 }
 
 #home-slider .control-nav {
-	position: absolute;
+	position: fixed/*absolute*/;
 	width: 100%;
 	background: #2F3238;
 	height: 50px;

@@ -172,13 +172,13 @@ jQuery(function ($) {
 				}
 			});
 
-			$('.fancybox-media').fancybox({
+			/*$('.fancybox-media').fancybox({
 				openEffect: 'none',
 				closeEffect: 'none',
 				helpers: {
 					media: {}
 				}
-			});
+			});*/
 		}
 	}
 
@@ -438,8 +438,8 @@ jQuery(function ($) {
 		BRUSHED.menu();
 		//BRUSHED.goSection();
 		BRUSHED.navigate();
-		BRUSHED.filter();
-		BRUSHED.fancyBox();
+		//BRUSHED.filter();
+		//BRUSHED.fancyBox();
 		BRUSHED.contactForm();
 		//BRUSHED.tweetFeed();
 		BRUSHED.scrollToTop();
@@ -452,5 +452,57 @@ jQuery(function ($) {
 	$(window).resize(function () {
 		BRUSHED.mobileNav();
 	});
+	$.get("photos.php", { page: 1 })
+		.done(function (data) {
+			if (data) {
+				var list = JSON.parse(data).list;									//console.log(list);
+				var ulist = $("ul#thumbs").empty();
+				//var $container = $('#projects');
+				
+				for (var i=0; i<list.length; i++){
+					var image = list[i];
+					var li_img = $('<li></li>').addClass("item-thumbs span3 "+image.category)
+										.append('<a class="hover-wrap fancybox" data-fancybox-group="'+image.category+'" title="'+image.title+'" href="'+image.url+'"><span class="overlay-img"></span><span class="overlay-img-thumb font-icon-plus"></span></a>')
+										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
+					ulist.append(li_img);
+				}
+				var dimension = {}, H; 
+				ulist.find("img").each(function(index, value){      
+					if(dimension[value.height]){
+						dimension[value.height] +=1;
+						H = value.height;
+					}else dimension[value.height] =1;	
 
+					if(dimension[value.height]>=5) H = value.height;
+					else if(dimension[value.height]>=4) H = value.height;
+				}).each(function(index, value){            //console.log(value.height, H);
+					if(value.height>H){                   //console.log($(value).parent())
+						$(this).css("margin-top", -(value.height-H)/2+"px"); 
+						$(this).parent().css("height", H);
+					} 
+				});		
+				
+				//var max = Math.max.apply(null, dimension.map(function(a){return a.Age;}))
+				BRUSHED.filter();//$('.item-thumbs').nailthumb();
+				BRUSHED.fancyBox();
+				
+			}
+		}).fail(function(){
+			alert("Error loading image list");
+		})
+		.always(function(){
+			console.log("finished loading image list");
+		});
+/**
+ * 
+ * <li class="item-thumbs span3 old">
+                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                            	<a class="hover-wrap fancybox" data-fancybox-group="old" title="The City" href="_include/img/work/full/image-11-full.JPG">
+                                	<span class="overlay-img"></span>
+                                    <span class="overlay-img-thumb font-icon-plus"></span>
+                                </a>
+                                <!-- Thumb Image and Description -->
+                                <img src="_include/img/work/full/image-11-full.JPG" alt="image 1.">
+                            </li>
+ */
 });
