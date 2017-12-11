@@ -302,8 +302,8 @@ h3.spec {
 	width: 100%;
 	height: 100%;
 	background: #26292E;
-	opacity: 0.7;
-	filter: alpha(opacity=70);
+	opacity: 0.2;
+	filter: alpha(opacity=20);
 	z-index: 0;
 }
 
@@ -635,7 +635,8 @@ nav#menu #menu-nav li a:hover {
 }
 
 .page-alternate {
-	background: #26292E;
+	/*background: #26292E;*/
+	background-color:rgba(0, 0, 0, 0.5);
 	padding: 100px 0;
 	position: relative;
 	z-index: 99;
@@ -643,7 +644,7 @@ nav#menu #menu-nav li a:hover {
 
 .title-page {
 	text-align: center;
-	margin-bottom: 100px;	
+	margin-bottom: 50px;	
 }
 
 .title-page .title {
