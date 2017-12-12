@@ -78,9 +78,9 @@ jQuery(function ($) {
 			thumbnail_navigation: 0,			// Thumbnail navigation
 			slides: [			// Slideshow Images
 				{ image: '_include/img/slider-images/image01.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image02.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image03.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
-				{ image: '_include/img/slider-images/image04.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' }
+				{ image: '_include/img/work/full/LPMZ3403.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' },
+				{ image: '_include/img/work/full//QDYX4503.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' }
+				//{ image: '_include/img/slider-images/image04.JPG', title: '<div class="slide-content"><img src="_include/img/logo2.png" /></div>', thumb: '', url: '' }
 			],
 
 			// Theme Options			   
@@ -461,9 +461,11 @@ jQuery(function ($) {
 					ulist.append(li_img);
 				}
 
-				BRUSHED.filter();//$('.item-thumbs').nailthumb();
-				BRUSHED.fancyBox();
-				setTimeout(function(){resizeThumb(ulist)}, 300)
+				setTimeout(function(){
+					resizeThumb(ulist);
+					BRUSHED.filter();//$('.item-thumbs').nailthumb();
+					BRUSHED.fancyBox();
+				}, 300)
 			}
 		}).fail(function(){
 			alert("Error loading image list");
