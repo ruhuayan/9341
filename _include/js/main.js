@@ -447,17 +447,11 @@ jQuery(function ($) {
 		BRUSHED.accordion();
 		BRUSHED.toggle();
 		BRUSHED.toolTip();
-	});
-
-	$(window).resize(function () {
-		BRUSHED.mobileNav();
-	});
-	$.get("_include/php/photos.php", { page: 1 })
+		$.get("_include/php/photos.php", { page: 1 })
 		.done(function (data) {
 			if (data) {
 				var list = JSON.parse(data).list;									//console.log(list);
 				var ulist = $("ul#thumbs").empty();
-				//var $container = $('#projects');
 				
 				for (var i=0; i<list.length; i++){
 					var image = list[i];
@@ -466,28 +460,10 @@ jQuery(function ($) {
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-				var H=0; 
-				ulist.find("img").each(function(index, value){      
-					/*if(dimension[value.height]){
-						dimension[value.height] +=1;
-						H = value.height;
-					}else dimension[value.height] =1;	
 
-					if(dimension[value.height]>=5) H = value.height;
-					else if(dimension[value.height]>=4) H = value.height;*/
-					H = H ? H : value.height;
-					if(value.height<H) H = value.height;
-				}).each(function(index, value){            //console.log(value.height, H);
-					if(value.height>H){                   //console.log($(value).parent())
-						$(this).css("margin-top", -(value.height-H)/2+"px"); 
-						$(this).parent().css("height", H);
-					} 
-				});		
-				
-				//var max = Math.max.apply(null, dimension.map(function(a){return a.Age;}))
 				BRUSHED.filter();//$('.item-thumbs').nailthumb();
 				BRUSHED.fancyBox();
-				
+				setTimeout(function(){resizeThumb(ulist)}, 300)
 			}
 		}).fail(function(){
 			alert("Error loading image list");
@@ -495,16 +471,24 @@ jQuery(function ($) {
 		.always(function(){
 			console.log("finished loading image list");
 		});
-/**
- * 
- * <li class="item-thumbs span3 old">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="old" title="The City" href="_include/img/work/full/image-11-full.JPG">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb font-icon-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="_include/img/work/full/image-11-full.JPG" alt="image 1.">
-                            </li>
- */
+	});
+
+	$(window).resize(function () {
+		BRUSHED.mobileNav();
+	});
+	function resizeThumb(ulist){
+		var H=0; 
+		ulist.find("img").each(function(index, value){     
+			H = H > 0? H : value.height; console.log(value.height, H);
+			if(value.height<H) H = value.height;
+		}).promise().done( function(){ console.log(H);
+			ulist.find("img").each(function(index, value){
+				if(value.height>H){                   //console.log($(value).parent())
+					$(this).css("margin-top", -(value.height-H)/2+"px"); 
+					$(this).parent().css("height", H);
+				} 
+			});
+		 });
+	}
+
 });
