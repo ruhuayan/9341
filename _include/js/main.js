@@ -452,20 +452,21 @@ jQuery(function ($) {
 			if (data) {
 				var list = JSON.parse(data).list;									//console.log(list);
 				var ulist = $("ul#thumbs").empty();
-				
+				var promises = [];
 				for (var i=0; i<list.length; i++){
 					var image = list[i];
+					promises.push(preload(image.url));
+
 					var li_img = $('<li></li>').addClass("item-thumbs span3 "+image.category)
 										.append('<a class="hover-wrap fancybox" data-fancybox-group="'+image.category+'" title="'+image.title+'" href="'+image.url+'"><span class="overlay-img"></span><span class="overlay-img-thumb font-icon-plus"></span></a>')
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-				BRUSHED.filter();//$('.item-thumbs').nailthumb();
-				BRUSHED.fancyBox();
-				setTimeout(function(){
+				Promise.all(promises).then(function(result){ console.log(result);
 					resizeThumb(ulist);	
-					
-				}, 300);
+					BRUSHED.filter();//$('.item-thumbs').nailthumb();
+					BRUSHED.fancyBox();
+				});
 				
 			}
 		}).fail(function(){
@@ -482,19 +483,30 @@ jQuery(function ($) {
 	});
 	function resizeThumb(ulist){
 		var H=0; 
-		ulist.find("img").each(function(index, value){     
-			H = H > 0? H : value.height; console.log(value.height, H);
+		ulist.find("img").each(function(index, value){             console.log(value);  
+			H = H > 0? H : value.height;                           console.log(value.height, H);
 			if(value.height<H) H = value.height;
-		}).promise().done( function(){ console.log(H);
+		}).promise().done( function(){ //console.log(H);
 			ulist.find("img").each(function(index, value){
 				if(value.height>H){                   //console.log($(value).parent())
 					$(this).css("margin-top", -(value.height-H)/2+"px"); 
 					$(this).parent().css("height", H);
 				} 
 			});
-			$("#link1997").click();
-			$("#allphotos").click();
+			
 		 });
+	}
+	function preload(url){
+		return new Promise(function(resolve, reject){
+			var img = new Image();
+			img.onload = function(){
+				resolve(url);
+			}
+			img.onerror = function(){
+				reject(url);
+			}
+			img.src = url;
+		})
 	}
 
 });
