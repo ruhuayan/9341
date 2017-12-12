@@ -452,7 +452,7 @@ jQuery(function ($) {
 	$(window).resize(function () {
 		BRUSHED.mobileNav();
 	});
-	$.get("photos.php", { page: 1 })
+	$.get("_include/php/photos.php", { page: 1 })
 		.done(function (data) {
 			if (data) {
 				var list = JSON.parse(data).list;									//console.log(list);
@@ -466,15 +466,17 @@ jQuery(function ($) {
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-				var dimension = {}, H; 
+				var H=0; 
 				ulist.find("img").each(function(index, value){      
-					if(dimension[value.height]){
+					/*if(dimension[value.height]){
 						dimension[value.height] +=1;
 						H = value.height;
 					}else dimension[value.height] =1;	
 
 					if(dimension[value.height]>=5) H = value.height;
-					else if(dimension[value.height]>=4) H = value.height;
+					else if(dimension[value.height]>=4) H = value.height;*/
+					H = H ? H : value.height;
+					if(value.height<H) H = value.height;
 				}).each(function(index, value){            //console.log(value.height, H);
 					if(value.height>H){                   //console.log($(value).parent())
 						$(this).css("margin-top", -(value.height-H)/2+"px"); 
