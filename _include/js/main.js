@@ -460,11 +460,11 @@ jQuery(function ($) {
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-				
+				BRUSHED.filter();//$('.item-thumbs').nailthumb();
+				BRUSHED.fancyBox();
 				setTimeout(function(){
 					resizeThumb(ulist);	
-					//BRUSHED.filter();//$('.item-thumbs').nailthumb();
-					//BRUSHED.fancyBox();
+					
 				}, 300);
 				
 			}
@@ -492,8 +492,8 @@ jQuery(function ($) {
 					$(this).parent().css("height", H);
 				} 
 			});
-			BRUSHED.filter();//$('.item-thumbs').nailthumb();
-			BRUSHED.fancyBox();
+			$("#link1997").click();
+			$("#allphotos").click();
 		 });
 	}
 
