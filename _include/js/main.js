@@ -460,17 +460,19 @@ jQuery(function ($) {
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-
+				
 				setTimeout(function(){
-					resizeThumb(ulist);
-					BRUSHED.filter();//$('.item-thumbs').nailthumb();
-					BRUSHED.fancyBox();
-				}, 300)
+					resizeThumb(ulist);	
+					//BRUSHED.filter();//$('.item-thumbs').nailthumb();
+					//BRUSHED.fancyBox();
+				}, 300);
+				
 			}
 		}).fail(function(){
 			alert("Error loading image list");
 		})
 		.always(function(){
+			
 			console.log("finished loading image list");
 		});
 	});
@@ -490,6 +492,8 @@ jQuery(function ($) {
 					$(this).parent().css("height", H);
 				} 
 			});
+			BRUSHED.filter();//$('.item-thumbs').nailthumb();
+			BRUSHED.fancyBox();
 		 });
 	}
 
