@@ -463,7 +463,7 @@ jQuery(function ($) {
 					ulist.append(li_img);
 				}
 				Promise.all(promises).then(function(result){ console.log(result);
-					resizeThumb(ulist);	
+					resizeThumb(ulist.find("img"));	
 					BRUSHED.filter();//$('.item-thumbs').nailthumb();
 					BRUSHED.fancyBox();
 				});
@@ -481,13 +481,13 @@ jQuery(function ($) {
 	$(window).resize(function () {
 		BRUSHED.mobileNav();
 	});
-	function resizeThumb(ulist){
+	function resizeThumb(images){
 		var H=0; 
-		ulist.find("img").each(function(index, value){             console.log(value);  
+		images.each(function(index, value){             console.log(value);  
 			H = H > 0? H : value.height;                           console.log(value.height, H);
 			if(value.height<H) H = value.height;
 		}).promise().done( function(){ //console.log(H);
-			ulist.find("img").each(function(index, value){
+			images.each(function(index, value){
 				if(value.height>H){                   //console.log($(value).parent())
 					$(this).css("margin-top", -(value.height-H)/2+"px"); 
 					$(this).parent().css("height", H);
