@@ -447,6 +447,7 @@ jQuery(function ($) {
 		BRUSHED.accordion();
 		BRUSHED.toggle();
 		BRUSHED.toolTip();
+		
 		$.get("_include/php/photos.php", { page: 1 })
 		.done(function (data) {
 			if (data) {
@@ -462,7 +463,7 @@ jQuery(function ($) {
 										.append('<img src="'+image.url+'" alt="'+image.alt+ '">');
 					ulist.append(li_img);
 				}
-				Promise.all(promises).then(function(result){ console.log(result);
+				Promise.all(promises).then(function(result){ 						console.log(result);
 					resizeThumb(ulist.find("img"));	
 					BRUSHED.filter();//$('.item-thumbs').nailthumb();
 					BRUSHED.fancyBox();
@@ -482,13 +483,13 @@ jQuery(function ($) {
 		BRUSHED.mobileNav();
 	});
 	function resizeThumb(images){
-		var H=0; 
-		images.each(function(index, value){             console.log(value);  
-			H = H > 0? H : value.height;                           console.log(value.height, H);
-			if(value.height<H) H = value.height;
-		}).promise().done( function(){ //console.log(H);
+		var H=0;           // thumbnail height
+		images.each(function(index, value){             //console.log(value);  
+			H = H > 0? H : value.height;                           console.log(value.width, H);
+			if(value.height < H && value.width < value.height*2) H = value.height;
+		}).promise().done( function(){ 
 			images.each(function(index, value){
-				if(value.height>H){                   //console.log($(value).parent())
+				if(value.height>H || value.height<H){                   //console.log($(value).parent())
 					$(this).css("margin-top", -(value.height-H)/2+"px"); 
 					$(this).parent().css("height", H);
 				} 
