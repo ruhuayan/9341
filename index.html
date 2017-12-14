@@ -144,6 +144,7 @@
             <div class="span12">
                 <div class="title-page">
                     <h2 class="title">我们的相册</h2>
+                    <h3><a href="javascript:openmap()">（查看同学分布图）</a></h3>
                 </div>
             </div>
         </div>
@@ -155,10 +156,10 @@
             	<!-- Filter -->
                 <nav id="options" class="work-nav">
                     <ul id="filters" class="option-set" data-option-key="filter">
-                    	
                         <li><a href="#filter" data-option-value="*" class="selected"> 首页相片 </a></li>
-                        <li><a href="#filter" data-option-value=".old">1997</a></li>
-                        <li><a href="#filter" data-option-value=".new">2017</a></li>
+                        <li><a href="#filter" data-option-value=".1997">1997</a></li>
+                        <li><a href="#filter" data-option-value=".2007">2007</a></li>
+                        <li><a href="#filter" data-option-value=".2017">2017</a></li>
                         <li><a href="#" onclick="window.open('gallery.html')">所有相片</a></li>
                     </ul>
                 </nav>
@@ -231,6 +232,24 @@
 </div>
 <!-- End About Section -->
 
+<!--<div id="social-area" class="page">
+	<div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="title-page">
+                    <h2 class="title">同学分布图</h2>
+
+                </div>
+            </div>
+        </div>
+    	<div class="row">
+            <div class="span9">
+                <svg class="map"></svg>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- End Socialize -->
 
 <!-- Contact Section -->
 <div id="contact" class="page">
@@ -358,8 +377,13 @@
 <script src="_include/js/main.js"></script> <!-- Default JS -->
 <!-- End Js -->
 <script>
-    
-
+    function openmap(){
+        var w = $(window).width(), h = $(window).height();                      console.log(w, h);
+        if(w>500)
+            window.open("map.html", "_blank", "toolbar=no,scrollbars=no,resizable=no,menubar=no,titlebar=no, top=" + (w-500)/2 + ", left="+ (h-500)/2+",width=500,height=500");
+        else 
+            window.open("map.html", "_blank", "toolbar=no,scrollbars=no,resizable=no,top=0, left=0,width=500,height=500");
+    }
 </script>
 </body>
 </html>

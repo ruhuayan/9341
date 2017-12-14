@@ -1,7 +1,7 @@
 <html>  
   <head>  
         <meta charset="utf-8">  
-        <title>Fujian地图</title>  
+        <title>同学分布图</title>  
   </head> 
 <style>
 html, body {
@@ -15,8 +15,10 @@ html, body {
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-	var width  = 500;
-	var height = 500;
+																	//console.log(window.innerWidth);
+	var height, width = window.innerWidth;
+	height = width = width>=500? 480 : width;                   console.log(width, height);
+
 	
 	var svg = d3.select("body").append("svg")
 	    .attr("width", width)

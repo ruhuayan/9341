@@ -299,7 +299,7 @@ jQuery(function ($) {
 			didScroll = false;
 
 		var $arrow = $('#back-to-top');
-
+		var controlNav = $(".control-nav");
 		$arrow.click(function (e) {
 			$('body,html').animate({ scrollTop: "0" }, 750, 'easeOutExpo');
 			e.preventDefault();
@@ -314,9 +314,9 @@ jQuery(function ($) {
 				didScroll = false;
 
 				if ($(window).scrollTop() > 1000) {
-					$arrow.css('display', 'block');
+					$arrow.css('display', 'block'); controlNav.css("display", "none");
 				} else {
-					$arrow.css('display', 'none');
+					$arrow.css('display', 'none');  controlNav.css("display", "block");
 				}
 			}
 		}, 250);
@@ -449,7 +449,7 @@ jQuery(function ($) {
 		BRUSHED.toolTip();
 		
 		$.get("_include/php/photos.php", { page: 1 })
-		.done(function (data) {
+		  .done(function (data) {
 			if (data) {
 				var list = JSON.parse(data).list;									//console.log(list);
 				var ulist = $("ul#thumbs").empty();
